@@ -4,9 +4,16 @@ import messages from 'src/i18n'
 
 export default boot(({ app }) => {
   const i18n = createI18n({
-    locale: 'en-US',
+    locale: 'en',
     globalInjection: true,
-    messages
+    messages: {
+      "en": {
+        "welcome": "Welcome"
+      },
+      "ru": {
+        "welcome": "Добро пожаловать" // Make sure this key exists
+      }
+}
   })
 
   // Set i18n instance on app

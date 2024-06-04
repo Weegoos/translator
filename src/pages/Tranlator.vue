@@ -17,14 +17,14 @@
           type="textarea"
           borderless
           counter
-          v-model="text" 
+          v-model="input" 
           maxlength="800"
           placeholder="Начните писать текст..."
           :input-style="{ resize: 'none' }"
           dense
         >
-        <template v-slot:append v-if="isText">
-          <q-icon name="close" @click="text = ''" class="cursor-pointer" />
+        <template v-slot:append>
+          <q-icon name="close" @click="input = ''" class="cursor-pointer" />
         </template>
       </q-input>
       </div>
@@ -32,10 +32,10 @@
         <q-input
           type="textarea"
           borderless
+          v-model="output"
           :input-style="{ resize: 'none' }"
         />
       </div>
-      
     </q-page>
   </q-page-container>
   </div>
@@ -43,21 +43,29 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-
+import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 export default {
   setup () {
-    const text = ref('')
-    const isText = ref(false);
+    const input = ref('')
+    const output = ref('')
+    const { t } = useI18n();
 
-    const handleButtonClick = () => {
-      console.log(text.value.length);
-    };
+    const isText = ref(false);
+    console.log(t);
+    watch(() => {
+      const currentText = input.value;
+      if (currentText === "Добро пожаловать") {
+        output.value = t('welcome');
+      } else {
+        output.value = currentText;
+      }
+    }, [input]);
 
     return {
-      text,
+      input,
       isText,
-      handleButtonClick,
+      output,
     };
   }
 }
