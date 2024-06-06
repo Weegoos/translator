@@ -71,7 +71,7 @@ export default {
         translatedText.value = translated;
       } catch (error) {
         console.error('Error translating text:', error);
-        translatedText.value = 'Ошибка перевода текста';
+        translatedText.value = 'Ошибка перевода текста в программе';
       }
     }
 
