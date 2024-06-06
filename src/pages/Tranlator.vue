@@ -46,9 +46,11 @@
             v-model="translatedText"
           />
         </div>
-        <div  :class="[$q.screen.width < 1200 ? 'col-4' : 'fit set']">
-          <q-btn class="row" label="Button" @click="translateTextBtn" style=" max-width: 250px"/>
+        <center>
+          <div  :class="[$q.screen.width < 1200 ? 'col-4' : 'fit set']" style="align-items: center">
+          <q-btn class="row text-center" label="Button" @click="translateTextBtn" style=" max-width: 250px"/>
         </div>
+        </center>
       </q-page>
     </q-page-container>
   </div>
@@ -143,7 +145,7 @@
       }
     }
 
-    translate()
+     translate()
   }
 </script>
 
@@ -165,6 +167,7 @@
 
 .set{
   position: absolute;
-  top: 170px;
+  top: 200px;
+  left: 0%;
 }
 </style>
