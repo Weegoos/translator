@@ -8,10 +8,12 @@ export default boot(({ app }) => {
     globalInjection: true,
     messages: {
       "en": {
-        "welcome": "Welcome"
+        "welcome": "Welcome",
+        "greeting": "Hello"
       },
       "ru": {
-        "welcome": "Добро пожаловать" // Make sure this key exists
+        "welcome": "Добро пожаловать",
+        "greeting": "Привет"
       }
 }
   })

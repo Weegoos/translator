@@ -9,15 +9,21 @@
     "lint": "eslint --ext .js,.vue ./",
     "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
-    "build": "quasar build"
+    "build": "quasar build",
+    "start:server": "node src/backend/server.js",
+    "start:client": "quasar dev",
+    "dev": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "dependencies": {
+    "@google-cloud/translate": "^8.3.0",
     "@quasar/extras": "^1.16.4",
     "axios": "^1.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "netlify": "^13.1.17",
     "pinia": "^2.0.11",
     "quasar": "^2.8.0",
+    "translate-google": "^1.5.0",
     "vue": "^3.4.18",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.12"
@@ -25,10 +31,13 @@
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",
     "@quasar/app-vite": "^1.8.0",
+    "@vue/cli-service": "^5.0.8",
     "autoprefixer": "^10.4.2",
+    "concurrently": "^8.2.2",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "prettier": "^2.5.1",
     "vite-plugin-checker": "^0.6.4"
