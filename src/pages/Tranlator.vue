@@ -46,6 +46,7 @@
             v-model="translatedText"
           />
         </div>
+        <q-btn label="Button" @click="translateTextBtn" style="max-width: 250px"/>
       </q-page>
     </q-page-container>
   </div>
@@ -58,7 +59,6 @@
 
 
 // language
-
       let inputLanguage = ref('Английский')
       const outputLanguage = ref('')
       const options = ['Русский', 'Английский', 'Казахский']
@@ -118,7 +118,10 @@
       textToTranslate.value = ""
     }
 
-    async function translate() {
+      
+
+    function translateTextBtn() {
+      async function translate() {
       try {
         const response = await fetch('http://localhost:3000/translate', {
           method: 'POST',
@@ -137,9 +140,9 @@
         translatedText.value = 'Ошибка перевода текста'
       }
     }
-      
 
-  
+    translate()
+  }
 </script>
 
 
