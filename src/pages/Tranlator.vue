@@ -46,7 +46,9 @@
             v-model="translatedText"
           />
         </div>
-        <q-btn label="Button" @click="translateTextBtn" style="max-width: 250px"/>
+        <div  :class="[$q.screen.width < 1200 ? 'col-4' : 'fit set']">
+          <q-btn class="row" label="Button" @click="translateTextBtn" style=" max-width: 250px"/>
+        </div>
       </q-page>
     </q-page-container>
   </div>
@@ -159,5 +161,10 @@
 
 .qPageRight{
   background-color: #EAEAEF;
+}
+
+.set{
+  position: absolute;
+  top: 170px;
 }
 </style>
