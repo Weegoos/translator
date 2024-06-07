@@ -14,7 +14,7 @@
         <q-toolbar>
          <q-btn icon="menu" flat />
          <q-toolbar-title>Translator</q-toolbar-title>
-         <q-select filled v-model="model" :options="options"  label="" />
+         <!-- <q-select filled v-model="model" :options="options"  label="" /> -->
         </q-toolbar>
       </q-header>
   </q-layout>

@@ -1,9 +1,9 @@
 import { createI18n } from 'vue-i18n'
-import messages from './locales'
+import messages from './locales/index.js'  // Убедитесь, что путь правильный
 
 const i18n = createI18n({
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'en',  // язык по умолчанию
+  fallbackLocale: 'en',  // резервный язык
   messages
 })
 
