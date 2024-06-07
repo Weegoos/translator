@@ -5,13 +5,13 @@
       <div>
         <!-- <p>Обнаруженный язык: {{ detectedLanguage }}</p> -->
       </div>
-      <div>
-        <div class="row q-pt-md">
-          <div class="col q-pl-md text-center">
+      <div >
+        <div class="row q-pt-md" >
+            <div class="col q-pl-md text-center" >
             <q-select v-model="inputLanguage" :options="options" label="Выберите язык..." />
           </div>
           <div class="col q-pr-md q-pl-md text-center">
-            <q-select v-model="outputLanguage" :options="options" label="Выберите язык..." />
+            <q-select  v-model="outputLanguage" :options="options" label="Выберите язык..." />
           </div>
           <q-separator />
         </div>
@@ -54,15 +54,33 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, defineProps  } from 'vue'
 import { Notify } from 'quasar'
 import { franc } from 'franc'
 import axios from 'axios'
 
+const props = defineProps({
+  optionsLang: {
+    type: Array,
+    required: true
+  }
+})
+
+// Внутреннее состояние
+const selectedOption = ref('')
+
+// Слежение за изменением выбранного языка
+watch(() => props.optionsLang, (newValue) => {
+  if (Array.isArray(newValue) && newValue.length > 0) {
+    selectedOption.value = newValue[0]?.label || ''
+  }
+}, { immediate: true }) 
+
+
 // language
-let inputLanguage = ref('Английский')
+let inputLanguage = ref('Русский')
 const outputLanguage = ref('')
-const options = ['Русский', 'Английский', 'Казахский']
+const options = ['Русский', 'English', 'Қазақ тілі', 'Türk']
 const detectedLanguage = ref('')
 const textToTranslate = ref('')
 
@@ -78,10 +96,14 @@ function detectLanguage() {
   if (detectedLanguage.value === 'rus') {
     inputLanguage.value = 'Русский'
   } else if (detectedLanguage.value === 'kaz') {
-    inputLanguage.value = 'Казахский'
+    inputLanguage.value = 'Қазақ тілі'
   } else if (['eng', 'sco', 'fuf'].includes(detectedLanguage.value)) {
-    inputLanguage.value = 'Английский'
+    inputLanguage.value = 'English'
+  }else if (detectedLanguage.value === 'tur'){
+    inputLanguage.value = 'Türk'
   }
+
+  console.log(outputLanguage.value);
 }
 
 // interface
@@ -90,14 +112,17 @@ let translatedText = ref('')
 let name = ''
 
 function watchChangeLanguage() {
-  if (outputLanguage.value === 'Английский') {
-    name = 'en'
+  if (outputLanguage.value === 'English') {
+    name = 'en';
   } else if (outputLanguage.value === 'Русский') {
-    name = 'ru'
-  } else if (outputLanguage.value === 'Казахский') {
-    name = 'kk'
+    name = 'ru';
+  } else if (outputLanguage.value === 'Қазақ тілі') {
+    name = 'kk';
+  } else if (outputLanguage.value === 'Türk') {
+    name = 'tr';  // Correct language code for Turkish
   }
 }
+
 
 const isDisabled = computed(() => {
   return outputLanguage.value === '' || textToTranslate.value === ''
@@ -139,10 +164,6 @@ async function translateTextBtn() {
     console.error('Error translating text:', error)
     translatedText.value = 'Ошибка перевода текста'
   }
-
- 
-
-
 }
 </script>
 

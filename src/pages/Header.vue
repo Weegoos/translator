@@ -7,20 +7,51 @@
     style="height: 60px;"
     class="shadow-2 rounded-borders "
   >
+  <div>
+    <Tranlator :optionsLang="optionsLang"/>
+  </div>
      <q-header reveal class="text-black q-pt-sm" :class="$q.dark.isActive ? 'bg-secondary' : 'bg-transparent'">
         <q-toolbar>
          <q-btn icon="menu" flat />
          <q-toolbar-title>Translator</q-toolbar-title>
+         <q-select filled v-model="model" :options="options"  label="" />
         </q-toolbar>
       </q-header>
   </q-layout>
 </template>
 
 <script>
-export default {
+import Tranlator from './Tranlator.vue';
+import { ref } from 'vue'
 
+export default {
+  components: {
+    Tranlator
+  },
+  setup () {
+    return {
+      model: ref('Язык'),
+
+      options: [
+        {
+          label: 'Ru',
+        },
+        {
+          label: 'En',
+        },
+        {
+          label: 'Kk',
+        },
+        {
+          label: 'Tr'
+        },
+      ]
+      
+    }
+
+  }
 }
-</script >
+</script>
 
 <style>
 

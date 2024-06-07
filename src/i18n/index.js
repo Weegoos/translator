@@ -1,5 +1,10 @@
-import enUS from './en-US'
+import { createI18n } from 'vue-i18n'
+import messages from './locales'
 
-export default {
-  'en-US': enUS
-}
+const i18n = createI18n({
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages
+})
+
+export default i18n
