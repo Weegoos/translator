@@ -1,10 +1,12 @@
-import { createI18n } from 'vue-i18n'
-import messages from './locales/index.js'  // Убедитесь, что путь правильный
+import en from './en.json'
+import ru from './ru.json'
+import kk from './kk.json'
+import trk from './trk.json'
 
-const i18n = createI18n({
-  locale: 'en',  // язык по умолчанию
-  fallbackLocale: 'en',  // резервный язык
-  messages
-})
 
-export default i18n
+export default {
+  en,
+  ru,
+  kk,
+  trk
+}
